@@ -28,7 +28,7 @@ class Circuitbox
     # @option options [Object] notifier (Circuitbox.default_notifier) Class notifications are sent to
     # @option options [Circuitbox::MemoryStore, Moneta] cache (Circuitbox.default_circuit_store) Class to store circuit open/close statistics
     #
-    # @raise [ArgumentError] If the execptions option is not an Array
+    # @raise [ArgumentError] If the exceptions option is not an Array
     def initialize(service, options = {})
       @service = service.to_s
       @circuit_options = DEFAULTS.merge(options)
@@ -82,7 +82,7 @@ class Circuitbox
           success!
         rescue *exceptions => e
           # Other stores could raise an exception that circuitbox is asked to watch.
-          # setting to nil keeps the same behavior as the previous defination of run.
+          # setting to nil keeps the same behavior as the previous definition of run.
           response = nil
           failure!
           raise Circuitbox::ServiceFailureError.new(service, e) if circuitbox_exceptions
